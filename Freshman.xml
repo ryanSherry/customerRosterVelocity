@@ -1,0 +1,305 @@
+#set( $fontsize = "10" )
+#set( $headerFontSize = "10" )
+#set( $col1width = "4.5in" )
+#set( $col2width = "1.5in" )
+#set( $col3width = "1.5in" ) 
+<document>
+  #foreach( $team in $teams )
+  #set( $session = $team.session )
+  #set( $program = $session.program )
+  <section pagesize="letter">
+    <margin  left=".5in" right=".5in" top=".5in" bottom=".2in"/>
+    
+
+    <paragraph horizontalalignment="left" type="table" preferredwidth="4.5in"  startOnNewPage="false" forcewidth="true">
+
+       #if( $team.iHelperRegistrations.Count > 0)
+      <row>
+        <margin bottom="2"/>
+        <border>    
+          <bottom color="#000000" />
+        </border>
+   
+        #if($photo == "yes")
+  <cell fixed="true" preferredwidth="0.3in">
+        </cell>
+        #end
+        <cell colspan="2">
+          <paragraph type="textparagraph">
+            <fragment fontsize="${fontsize}" italic="true">
+               Coach
+            </fragment>
+          </paragraph>
+        </cell>
+        <cell>
+          <paragraph type="textparagraph">
+            <fragment fontsize="${fontsize}" italic="true">
+                Name
+            </fragment>
+          </paragraph>
+        </cell>       
+        <cell>
+          <paragraph type="textparagraph" horizontalalignment="center">
+            <fragment fontsize="${fontsize}" italic="true">
+               Phone
+            </fragment>
+          </paragraph>
+        </cell>       
+      </row>     
+
+    #foreach( $registration in $team.iHelperRegistrations )
+      #set( $person = $registration.iPerson )
+      #set( $approval = $registration.PrintApprovalResult )
+      <row>
+        <padding bottom="2"/>
+          #if($photo == "yes")
+            <cell >
+    <margin  right="10"/>
+    #set( $picturePath = "${urlRoot}/Files/PersonImage?data=${stringTool.EncryptForImageRequest($person.Id.ToString(), $league.league_id.ToString(), $person.isMemberManager)}" )
+    <paragraph type="image" path="$picturePath" width="0.3in"/>
+            </cell>
+          #end
+        <cell colspan="2">
+          <paragraph type="textparagraph">
+            <fragment fontsize="${fontsize}">
+              $stringTool.XmlEscape( $registration.roleString )
+            </fragment>
+          </paragraph>
+        </cell> 
+        <cell>
+          <paragraph type="textparagraph">
+            <fragment fontsize="${fontsize}">
+              $stringTool.XmlEscape( $person.lastname ), $stringTool.XmlEscape( $person.firstname )
+            </fragment>
+          </paragraph>
+        </cell>       
+      
+        <cell>
+          <paragraph type="textparagraph" horizontalalignment="center">
+            <fragment fontsize="${fontsize}">
+               $stringTool.XmlEscape( $person.primaryPhone )
+            </fragment>
+          </paragraph>
+        </cell>    
+      </row>
+      #end
+    #end
+
+</paragraph>
+
+    <paragraph type="table" preferredwidth="7.5in" forcewidth="true">   
+
+    
+
+    #if( $team.iPlayerRegistrations.Count > 0)
+    <row minheight="0.125in">
+   
+        #if($photo == "yes")
+	<cell fixed="true" preferredwidth="0.3in">
+        </cell>
+        #end
+
+        <cell>
+          <border>
+            <left color="black"/>
+            <top color="black"/>
+            <bottom color="black"/>
+          </border>
+          <paragraph type="textparagraph" horizontalalignment="center" >
+            <fragment fontsize="${fontsize}" italic="true">
+                #
+            </fragment>
+          </paragraph>
+        </cell>    
+
+        <cell>
+          <border>
+            <left color="black"/>
+            <top color="black"/>
+            <bottom color="black"/>
+          </border>
+          <paragraph type="textparagraph" horizontalalignment="center" >
+            <fragment fontsize="${fontsize}" italic="true">
+                Lastname
+            </fragment>
+          </paragraph>
+        </cell>       
+	
+	       <cell>
+          <border>
+            <left color="black"/>
+            <top color="black"/>
+            <bottom color="black"/>
+          </border>
+          <paragraph type="textparagraph" horizontalalignment="center" >
+            <fragment fontsize="${fontsize}" italic="true">
+               Firstname
+            </fragment>
+          </paragraph>
+        </cell>
+        <cell>
+          <border>
+            <left color="black"/>
+            <right color="black"/>
+            <top color="black"/>
+            <bottom color="black"/>
+          </border>
+          <paragraph type="textparagraph" horizontalalignment="center">
+            <fragment fontsize="${fontsize}" italic="true">
+               Phonetic Spelling
+            </fragment>
+          </paragraph>
+        </cell>       
+
+      </row> 
+
+
+
+      #foreach( $registration in $team.iPlayerRegistrations )
+      #if ($registration.RoleString == "Player")
+      #set( $person = $registration.iPerson )
+      #set( $approval = $registration.PrintApprovalResult )
+      <row donotbreak="true">
+
+        <cell>
+          <border>
+            <left color="black"/>
+
+            <bottom color="black"/>
+          </border>
+          #if ($program.UseJerseyNumber)
+          <paragraph type="textparagraph" horizontalalignment="center">
+            <fragment fontsize="${fontsize}">
+              $!registration.JerseyNumber
+            </fragment>
+          </paragraph>   
+          #end
+        </cell>
+        
+        <cell>
+          <border>
+            <left color="black"/>
+
+            <bottom color="black"/>
+          </border>
+          <paragraph type="textparagraph">
+            <fragment fontsize="${fontsize}">
+              $stringTool.XmlEscape( $person.lastname )
+            </fragment>
+          </paragraph>                    
+        </cell>
+
+        <cell>
+          <border>
+            <left color="black"/>
+            
+            <bottom color="black"/>
+          </border>
+          <paragraph type="textparagraph">
+            <fragment fontsize="${fontsize}">
+              $stringTool.XmlEscape( $person.firstname )
+            </fragment>
+          </paragraph>
+        </cell>
+        <cell>
+          <border>
+            <left color="black"/>
+            
+            <bottom color="black"/>
+            <right color="black" />
+          </border>
+          <paragraph type="textparagraph" horizontalalignment="center">
+            <fragment fontsize="${fontsize}">
+              
+            </fragment>
+          </paragraph>
+        </cell>
+      </row>
+      #end
+      #end
+
+   #end
+
+
+  
+
+    </paragraph>
+
+<paragraph type="table" preferredwidth="7.5in" forcewidth="true"  startOnNewPage="false" >   
+      <row>
+        <cell>
+          <paragraph type="textparagraph">
+            <fragment fontsize="10" bold="false" preservewhitespace="true"> </fragment>
+          </paragraph>
+        </cell>
+      </row>
+
+      <row>
+        <cell>
+          <paragraph type="textparagraph">
+            <fragment fontsize="10" bold="false" preservewhitespace="true"> </fragment>
+          </paragraph>
+        </cell>
+      </row>
+
+      <row>
+        <cell>
+
+            <paragraph type="textparagraph">
+              <fragment fontsize="10" bold="false">
+                Head Coach Signature:
+              </fragment>
+            </paragraph>
+        </cell>
+        <cell>
+          <paragraph type="textparagraph">
+            <fragment fontsize="10" bold="false">
+               ____________________________________________________________
+            </fragment>
+          </paragraph>
+        </cell>
+        
+      </row>
+
+      <row>
+        <cell>
+          <paragraph type="textparagraph">
+            <fragment fontsize="10" bold="false" preservewhitespace="true"> </fragment>
+          </paragraph>
+        </cell>
+      </row>
+
+      #foreach( $registration in $team.IHelperRegistrations )
+      #set( $person = $registration.IPerson )
+
+      <row>
+        <cell>
+            #if ($registration.roleString == "Coach")
+            <paragraph type="textparagraph">
+              <fragment fontsize="10" bold="false">
+              </fragment>
+            </paragraph>
+        </cell>
+        <cell>
+          
+          <paragraph type="textparagraph">
+            <fragment fontsize="10" bold="false">
+               $stringTool.XmlEscape( $person.lastname ), $stringTool.XmlEscape( $person.firstname )
+            </fragment>
+          </paragraph>
+          #end
+        </cell>
+        
+      </row>
+ 
+      #end
+
+
+
+
+    </paragraph>
+
+  </section>
+  #end
+
+</document>
