@@ -9,9 +9,17 @@
   #set( $program = $session.program )
   <section pagesize="letter">
     <margin  left=".5in" right=".5in" top=".5in" bottom=".2in"/>
-    
 
-    <paragraph horizontalalignment="left" type="table" preferredwidth="4.5in"  startOnNewPage="false" forcewidth="true">
+    <paragraph type = "table" preferredwidth="8in" startOnNewPage = "false" forcewidth = "true">
+      <row>
+        <cell fixed="true" preferredwidth="2in">
+          <paragraph type="image" path="http://www.desirewebworld.in/images/onlinetest/Online%20Test%20for%20upcoming%20exams.png" width="2in"/>
+        </cell>
+        <cell>
+              <paragraph horizontalalignment="left" type="table" preferredwidth="4.5in"  startOnNewPage="false" forcewidth="true">
+
+      <margin bottom = ".2in"/>
+      <margin left = ".2in"/>
 
        #if( $team.iHelperRegistrations.Count > 0)
       <row>
@@ -26,30 +34,32 @@
         #end
         <cell colspan="2">
           <paragraph type="textparagraph">
-            <fragment fontsize="${fontsize}" italic="true">
-               Coach
+            <fragment fontsize="${fontsize}" bold="true">
+               COACH
             </fragment>
           </paragraph>
         </cell>
         <cell>
           <paragraph type="textparagraph">
-            <fragment fontsize="${fontsize}" italic="true">
-                Name
+            <fragment fontsize="${fontsize}" bold="true">
+                NAME
             </fragment>
           </paragraph>
         </cell>       
         <cell>
           <paragraph type="textparagraph" horizontalalignment="center">
-            <fragment fontsize="${fontsize}" italic="true">
-               Phone
+            <fragment fontsize="${fontsize}" bold="true">
+               PHONE
             </fragment>
           </paragraph>
         </cell>       
       </row>     
 
     #foreach( $registration in $team.iHelperRegistrations )
-      #set( $person = $registration.iPerson )
-      #set( $approval = $registration.PrintApprovalResult )
+      #if ($registration.roleString == "Coach" || $registration.roleString == "Assistant Coach")
+        #set( $person = $registration.iPerson )
+        #set( $approval = $registration.PrintApprovalResult )
+
       <row>
         <padding bottom="2"/>
           #if($photo == "yes")
@@ -61,9 +71,17 @@
           #end
         <cell colspan="2">
           <paragraph type="textparagraph">
+            #if($registration.roleString == "Coach")
             <fragment fontsize="${fontsize}">
-              $stringTool.XmlEscape( $registration.roleString )
+              $stringTool.XmlEscape( "Head Coach" )
             </fragment>
+            #end
+
+            #if($registration.roleString == "Assistant Coach")
+            <fragment fontsize="${fontsize}">
+              $stringTool.XmlEscape( "Asst. Coach" )
+            </fragment>
+            #end
           </paragraph>
         </cell> 
         <cell>
@@ -84,8 +102,12 @@
       </row>
       #end
     #end
-
+    #end
 </paragraph>
+        </cell>
+      </row>
+    </paragraph>
+    
 
     <paragraph type="table" preferredwidth="7.5in" forcewidth="true">   
 
@@ -95,7 +117,7 @@
     <row minheight="0.125in">
    
         #if($photo == "yes")
-	<cell fixed="true" preferredwidth="0.3in">
+  <cell fixed="true" preferredwidth="0.3in">
         </cell>
         #end
 
@@ -106,7 +128,7 @@
             <bottom color="black"/>
           </border>
           <paragraph type="textparagraph" horizontalalignment="center" >
-            <fragment fontsize="${fontsize}" italic="true">
+            <fragment fontsize="${fontsize}" bold="true">
                 #
             </fragment>
           </paragraph>
@@ -119,20 +141,20 @@
             <bottom color="black"/>
           </border>
           <paragraph type="textparagraph" horizontalalignment="center" >
-            <fragment fontsize="${fontsize}" italic="true">
+            <fragment fontsize="${fontsize}" bold="true">
                 Lastname
             </fragment>
           </paragraph>
         </cell>       
-	
-	       <cell>
+  
+         <cell>
           <border>
             <left color="black"/>
             <top color="black"/>
             <bottom color="black"/>
           </border>
           <paragraph type="textparagraph" horizontalalignment="center" >
-            <fragment fontsize="${fontsize}" italic="true">
+            <fragment fontsize="${fontsize}" bold="true">
                Firstname
             </fragment>
           </paragraph>
@@ -145,7 +167,7 @@
             <bottom color="black"/>
           </border>
           <paragraph type="textparagraph" horizontalalignment="center">
-            <fragment fontsize="${fontsize}" italic="true">
+            <fragment fontsize="${fontsize}" bold="true">
                Phonetic Spelling
             </fragment>
           </paragraph>
@@ -222,80 +244,6 @@
 
 
   
-
-    </paragraph>
-
-<paragraph type="table" preferredwidth="7.5in" forcewidth="true"  startOnNewPage="false" >   
-      <row>
-        <cell>
-          <paragraph type="textparagraph">
-            <fragment fontsize="10" bold="false" preservewhitespace="true"> </fragment>
-          </paragraph>
-        </cell>
-      </row>
-
-      <row>
-        <cell>
-          <paragraph type="textparagraph">
-            <fragment fontsize="10" bold="false" preservewhitespace="true"> </fragment>
-          </paragraph>
-        </cell>
-      </row>
-
-      <row>
-        <cell>
-
-            <paragraph type="textparagraph">
-              <fragment fontsize="10" bold="false">
-                Head Coach Signature:
-              </fragment>
-            </paragraph>
-        </cell>
-        <cell>
-          <paragraph type="textparagraph">
-            <fragment fontsize="10" bold="false">
-               ____________________________________________________________
-            </fragment>
-          </paragraph>
-        </cell>
-        
-      </row>
-
-      <row>
-        <cell>
-          <paragraph type="textparagraph">
-            <fragment fontsize="10" bold="false" preservewhitespace="true"> </fragment>
-          </paragraph>
-        </cell>
-      </row>
-
-      #foreach( $registration in $team.IHelperRegistrations )
-      #set( $person = $registration.IPerson )
-
-      <row>
-        <cell>
-            #if ($registration.roleString == "Coach")
-            <paragraph type="textparagraph">
-              <fragment fontsize="10" bold="false">
-              </fragment>
-            </paragraph>
-        </cell>
-        <cell>
-          
-          <paragraph type="textparagraph">
-            <fragment fontsize="10" bold="false">
-               $stringTool.XmlEscape( $person.lastname ), $stringTool.XmlEscape( $person.firstname )
-            </fragment>
-          </paragraph>
-          #end
-        </cell>
-        
-      </row>
- 
-      #end
-
-
-
 
     </paragraph>
 
