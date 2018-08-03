@@ -12,8 +12,9 @@
 
     <paragraph type = "table" preferredwidth="8in" startOnNewPage = "false" forcewidth = "true">
       <row>
-        <cell fixed="true" preferredwidth="2in">
-          <paragraph type="image" path="http://www.desirewebworld.in/images/onlinetest/Online%20Test%20for%20upcoming%20exams.png" width="2in"/>
+      <margin bottom=".2in"/>
+        <cell fixed="true" preferredwidth="1.5in">
+          <paragraph type="image" path="https://s3.amazonaws.com/siplay-static/Images/smallweightincodes.png" width="1.5in"/>
         </cell>
         <cell>
               <paragraph horizontalalignment="left" type="table" preferredwidth="4.5in"  startOnNewPage="false" forcewidth="true">
@@ -121,7 +122,7 @@
         </cell>
         #end
 
-        <cell>
+        <cell fixed="true" preferredwidth="0.3in">
           <border>
             <left color="black"/>
             <top color="black"/>
@@ -184,7 +185,8 @@
             </fragment>
           </paragraph>
         </cell>
-         <cell>
+
+         <cell fixed="true" preferredwidth="1in">
           <border>
             <left color="black"/>
             <top color="black"/>
@@ -208,7 +210,8 @@
             </fragment>
           </paragraph>
         </cell>
-        <cell>
+
+        <cell fixed="true" preferredwidth="1.6in">
           <border>
             <left color="black"/>
             <right color="black"/>
