@@ -294,7 +294,6 @@
             <left color="black"/>
             
             <bottom color="black"/>
-            <right color="black" />
           </border>
           <paragraph type="textparagraph" horizontalalignment="center">
             <fragment fontsize="${fontsize}">
@@ -308,7 +307,6 @@
             <left color="black"/>
             
             <bottom color="black"/>
-            <right color="black" />
           </border>
           <paragraph type="textparagraph" horizontalalignment="center">
             <fragment fontsize="${fontsize}">
@@ -322,7 +320,6 @@
             <left color="black"/>
             
             <bottom color="black"/>
-            <right color="black" />
           </border>
           <paragraph type="textparagraph" horizontalalignment="center">
             <fragment fontsize="${fontsize}">
