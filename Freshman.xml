@@ -3,6 +3,7 @@
 #set( $col1width = "4.5in" )
 #set( $col2width = "1.5in" )
 #set( $col3width = "1.5in" ) 
+#set ( $sort = 5 )
 <document>
   #foreach( $team in $teams )
   #set( $session = $team.session )
@@ -176,9 +177,10 @@
 
       </row> 
 
+      #set ( $playerRegistrations = $team.iPlayerRegistrations )
+      $playerRegistrations.Sort($sort)
 
-
-      #foreach( $registration in $team.iPlayerRegistrations )
+      #foreach( $registration in $playerRegistrations )
       #if ($registration.RoleString == "Player")
       #set( $person = $registration.iPerson )
       #set( $approval = $registration.PrintApprovalResult )
