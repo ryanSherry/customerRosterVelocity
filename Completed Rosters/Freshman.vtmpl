@@ -3,7 +3,6 @@
 #set( $col1width = "4.5in" )
 #set( $col2width = "1.5in" )
 #set( $col3width = "1.5in" ) 
-#set ($sort = 5)
 <document>
   #foreach( $team in $teams )
   #set( $session = $team.session )
@@ -13,9 +12,9 @@
 
     <paragraph type = "table" preferredwidth="8in" startOnNewPage = "false" forcewidth = "true">
       <row>
-      <margin bottom=".2in"/>
-        <cell fixed="true" preferredwidth="1.5in">
-          <paragraph type="image" path="https://s3.amazonaws.com/siplay-static/Images/smallweightincodes.png" width="1.5in"/>
+        <margin bottom=".2in"/>
+        <cell fixed="true" preferredwidth="2.4in">
+          <paragraph type="image" path="https://s3.amazonaws.com/siplay-static/Images/largeweightincodes.png" width="2.4in"/>
         </cell>
         <cell>
               <paragraph horizontalalignment="left" type="table" preferredwidth="4.5in"  startOnNewPage="false" forcewidth="true">
@@ -123,20 +122,7 @@
         </cell>
         #end
 
-        <cell fixed="true" preferredwidth="0.3in">
-          <border>
-            <left color="black"/>
-            <top color="black"/>
-            <bottom color="black"/>
-          </border>
-          <paragraph type="textparagraph" horizontalalignment="center" >
-            <fragment fontsize="${fontsize}" bold="true">
-                WT CODE
-            </fragment>
-          </paragraph>
-        </cell>  
-
-        <cell>
+        <cell fixed="true" preferredwidth=".5in">
           <border>
             <left color="black"/>
             <top color="black"/>
@@ -149,7 +135,7 @@
           </paragraph>
         </cell>    
 
-        <cell>
+        <cell fixed="true" preferredwidth="1.2in">
           <border>
             <left color="black"/>
             <top color="black"/>
@@ -162,7 +148,7 @@
           </paragraph>
         </cell>       
   
-         <cell>
+         <cell fixed="true" preferredwidth="1.4in">
           <border>
             <left color="black"/>
             <top color="black"/>
@@ -177,79 +163,26 @@
         <cell>
           <border>
             <left color="black"/>
-            <top color="black"/>
-            <bottom color="black"/>
-          </border>
-          <paragraph type="textparagraph" horizontalalignment="center">
-            <fragment fontsize="${fontsize}" bold="true">
-               Weight
-            </fragment>
-          </paragraph>
-        </cell>
-
-         <cell fixed="true" preferredwidth="1in">
-          <border>
-            <left color="black"/>
-            <top color="black"/>
-            <bottom color="black"/>
-          </border>
-          <paragraph type="textparagraph" horizontalalignment="center">
-            <fragment fontsize="${fontsize}" bold="true">
-               DOB
-            </fragment>
-          </paragraph>
-        </cell>
-        <cell>
-          <border>
-            <left color="black"/>
-            <top color="black"/>
-            <bottom color="black"/>
-          </border>
-          <paragraph type="textparagraph" horizontalalignment="center">
-            <fragment fontsize="${fontsize}" bold="true">
-               Primary Phone
-            </fragment>
-          </paragraph>
-        </cell>
-
-        <cell fixed="true" preferredwidth="1.6in">
-          <border>
-            <left color="black"/>
             <right color="black"/>
             <top color="black"/>
             <bottom color="black"/>
           </border>
           <paragraph type="textparagraph" horizontalalignment="center">
             <fragment fontsize="${fontsize}" bold="true">
-               School
+               Phonetic Spelling
             </fragment>
           </paragraph>
-        </cell>                                    
+        </cell>       
 
       </row> 
 
 
-      #set ( $playerRegistrations = $team.iPlayerRegistrations )
-      $playerRegistrations.Sort($sort)
 
-      #foreach( $registration in $playerRegistrations )
+      #foreach( $registration in $team.iPlayerRegistrations )
       #if ($registration.RoleString == "Player")
       #set( $person = $registration.iPerson )
       #set( $approval = $registration.PrintApprovalResult )
       <row donotbreak="true">
-
-        <cell>
-          <border>
-            <left color="black"/>
-
-            <bottom color="black"/>
-          </border>
-          <paragraph type="textparagraph">
-            <fragment fontsize="${fontsize}">
-              
-            </fragment>
-          </paragraph>                    
-        </cell>
 
         <cell>
           <border>
@@ -291,46 +224,6 @@
             </fragment>
           </paragraph>
         </cell>
-
-        <cell>
-          <border>
-            <left color="black"/>
-            
-            <bottom color="black"/>
-          </border>
-          <paragraph type="textparagraph" horizontalalignment="center">
-            <fragment fontsize="${fontsize}">
-              $!registration.GetCustomValue( "Weigh-in Weight" )
-            </fragment>
-          </paragraph>
-        </cell>
-
-        <cell>
-          <border>
-            <left color="black"/>
-            
-            <bottom color="black"/>
-          </border>
-          <paragraph type="textparagraph" horizontalalignment="center">
-            <fragment fontsize="${fontsize}">
-              $stringTool.format( $person.birthdate, "MM/dd/yyyy" )
-            </fragment>
-          </paragraph>
-        </cell>
-
-        <cell>
-          <border>
-            <left color="black"/>
-            
-            <bottom color="black"/>
-          </border>
-          <paragraph type="textparagraph" horizontalalignment="center">
-            <fragment fontsize="${fontsize}">
-              $stringTool.XmlEscape( $person.primaryPhone )
-            </fragment>
-          </paragraph>
-        </cell>
-
         <cell>
           <border>
             <left color="black"/>
@@ -340,11 +233,10 @@
           </border>
           <paragraph type="textparagraph" horizontalalignment="center">
             <fragment fontsize="${fontsize}">
-              $!registration.GetCustomValue( "School" )
+              
             </fragment>
           </paragraph>
         </cell>
-
       </row>
       #end
       #end

@@ -3,7 +3,6 @@
 #set( $col1width = "4.5in" )
 #set( $col2width = "1.5in" )
 #set( $col3width = "1.5in" ) 
-#set ($sort = 5)
 <document>
   #foreach( $team in $teams )
   #set( $session = $team.session )
@@ -229,10 +228,8 @@
       </row> 
 
 
-      #set ( $playerRegistrations = $team.iPlayerRegistrations )
-      $playerRegistrations.Sort($sort)
 
-      #foreach( $registration in $playerRegistrations )
+      #foreach( $registration in $team.iPlayerRegistrations )
       #if ($registration.RoleString == "Player")
       #set( $person = $registration.iPerson )
       #set( $approval = $registration.PrintApprovalResult )
@@ -313,7 +310,7 @@
           </border>
           <paragraph type="textparagraph" horizontalalignment="center">
             <fragment fontsize="${fontsize}">
-              $stringTool.format( $person.birthdate, "MM/dd/yyyy" )
+              $stringTool.XmlEscape( $person.renderBirthdate() )
             </fragment>
           </paragraph>
         </cell>
